@@ -2,22 +2,22 @@
 
 int str_len(const char string[])
 {
-	int count = 0;
-	while (string[count++] != '\0');	// inc count if not end
+	int count = -1;
+	while (string[++count] != '\0');	// inc count if not end
 	return count;
 }
 
 void concat(const char str1[], const char str2[], char result[])
 {
-	int res_index = 0;
-	int index = 0;
-	while (str1[index++] != '\0')
-		result[res_index++] = str1[index - 1];
+	int i, j;
 	
-	index = 0;
-	while (str2[index++] != '\0')
-		result[res_index++] = str2[index - 1];
-	result[res_index] = '\0';
+	for (i = 0; str1[i] != '\0'; ++i)
+		result[i] = str1[i];
+	
+	for (j = 0; str2[j] != '\0'; ++j)
+		result[i+j] = str2[j];
+	
+	result[i+j] = '\0';
 	
 	return;
 }
@@ -39,8 +39,8 @@ int main(void)
 	
 	const char str2[] = "Hello ";
 	const char str3[] = "World!";
-	int result_len = str_len(str2) + str_len(str3) - 1;
-	char result[result_len];
+	int result_len = str_len(str2) + str_len(str3);
+	char result[result_len + 1];
 	concat(str2, str3, result);
 	printf("'%s' and '%s' together are '%s'\n\n", str2, str3, result);
 	
