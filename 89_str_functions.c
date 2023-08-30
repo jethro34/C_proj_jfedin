@@ -49,17 +49,18 @@ void swap_str(char str1[], char str2[]) {
 
 void sort_str_arr(char strings[][MAX_STRING_LENGTH], int strings_length)
 {
+	// sort array using insertion sort
 	int i, j;
 	char key_str[MAX_STRING_LENGTH];
 	for (i = 1; i < strings_length; i++) {
-		strcpy(key_str, strings[i]);
+		strncpy(key_str, strings[i], sizeof(key_str) - 1);
 		j = i - 1;
 		
 		while (j >= 0 && strcmp(strings[j], key_str) > 0) {
-			strcpy(strings[j+1], strings[j]);
+			strncpy(strings[j+1], strings[j], sizeof(strings[j+1]) - 1);
 			j--;
 		}
-		strcpy(strings[j+1], key_str);
+		strncpy(strings[j+1], key_str, sizeof(strings[j+1]) - 1);
 	}
 }
 
